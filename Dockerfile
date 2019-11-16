@@ -4,5 +4,5 @@ RUN apt-get update \
     && docker-php-ext-install mysqli
 #Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&\
-    php composer-setup.php --install-dir=bin --filename=composer &&\
+    php composer-setup.php --install-dir=/bin --filename=composer &&\
     a2enmod rewrite
