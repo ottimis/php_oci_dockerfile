@@ -1,6 +1,7 @@
 FROM php:7.3-apache
 RUN apt-get update \
-    && apt-get install -y zip \
+    && apt-get install --no-install-recommends -y zip \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install mysqli
 # Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&\
