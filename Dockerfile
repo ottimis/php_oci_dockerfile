@@ -5,7 +5,7 @@ RUN apt-get update \
 # Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&\
     php composer-setup.php --install-dir=/bin --filename=composer &&\
-    sed 's/^;date\.timezone[[:space:]]=.*$/date.timezone = "Europe\/Rome"/' &&\
-    a2enmod rewrite
+    && printf '[PHP]\ndate.timezone = "Europe/Rome"\n' > /usr/local/etc/php/conf.d/tzone.ini \
+    && a2enmod rewrite
 # Slim framework
 COPY misc/.htaccess /var/www/html
